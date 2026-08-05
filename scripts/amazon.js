@@ -1,3 +1,6 @@
+import {cart} from '../data/cart.js';
+// .. means go back (folder)
+import {products} from '../data/products.js' ;
 
 let productsHTML = '';
 
