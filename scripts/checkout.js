@@ -1,6 +1,7 @@
-import {cart, removeFromCart} from '../data/cart.js';
+import {cart, removeFromCart, updateCartQuantity} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurency} from './utils/money.js';
+
 
 
 let cartSummaryHTML = '';
@@ -96,6 +97,9 @@ cart.forEach((cartItem) => {
   `;
 });
 
+const cartQuantity = updateCartQuantity();
+document.querySelector('.js-checkout-number').innerHTML = cartQuantity;
+
 document.querySelector('.js-order-summery').innerHTML = cartSummaryHTML;
 
 
@@ -104,9 +108,12 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
     const productId = link.dataset.productId;
     removeFromCart(productId);
     const container = document.querySelector(`.js-cart-item-container-${productId}`)
+    const cartQuantity = updateCartQuantity();
+    document.querySelector('.js-checkout-number').innerHTML = cartQuantity;
     console.log(container);
     container.remove(); 
+    
   });
-
   
 });
+
