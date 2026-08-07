@@ -4,6 +4,7 @@ import {formatCurency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import {deliveryOptions, getDeliveryoption} from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
+import { renderHeaderHTML } from '../Checkout/checkoutHeader.js';
 
 const today = dayjs();
 const deliveryDate = today.add(7, 'days');
@@ -125,8 +126,9 @@ export function renderOrderSummary() {
     return html;
   };
 
-  const cartQuantity = updateCartQuantity();
-  document.querySelector('.js-checkout-number').innerHTML = cartQuantity;
+  console.log(document.querySelector('.js-order-summery'));
+  console.log(document.body.innerHTML);
+
 
   document.querySelector('.js-order-summery').innerHTML = cartSummaryHTML;
 
@@ -137,6 +139,7 @@ export function renderOrderSummary() {
       removeFromCart(productId);
       renderOrderSummary();
       renderPaymentSummary();
+      renderHeaderHTML();
 
 
       const container = document.querySelector(`.js-cart-item-container-${productId}`)
@@ -155,8 +158,11 @@ export function renderOrderSummary() {
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
       renderPaymentSummary();
+      renderHeaderHTML();
 
     });
   });
+
+  
 };
 

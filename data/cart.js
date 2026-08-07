@@ -28,15 +28,25 @@ export function addTOCart(productId) {
     }
   });
 
+  const addedItem = document.querySelector(`.js-added-text-${productId}`);
+  const selectedQuantity = document.querySelector(`.js-quantity-selector-${productId}`);
+  const selectedQuantityNumber = Number(selectedQuantity.value)
+
   if (matchingItem) {
-    matchingItem.quantity ++;
+    matchingItem.quantity += selectedQuantityNumber;
   }else {
     cart.push({
-      productId: productId,
-      quantity: 1,
+      productId,
+      quantity: selectedQuantityNumber,
       deliveryOptionId : '1',
   });
   }
+
+  addedItem.style.opacity = '1';
+  setTimeout(() => {
+    addedItem.style.opacity = '0';
+  }, 1000);
+      
 
   saveToStorage();
 };
