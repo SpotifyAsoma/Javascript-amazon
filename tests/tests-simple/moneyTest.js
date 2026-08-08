@@ -1,4 +1,4 @@
-import {formatCurency} from '../scripts/utils/money.js';
+import {formatCurency} from '../../scripts/utils/money.js';
 
 if (formatCurency(2095) === '20.95') {
   console.log('formatCurency Passed');
