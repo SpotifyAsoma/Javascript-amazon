@@ -1,6 +1,7 @@
 import { renderOrderSummary } from "../../scripts/Checkout/orderSummary.js";
-import {loadFromStorage,cart } from "../../data/cart.js";
-
+import { loadFromStorage,cart } from "../../data/cart.js";
+import { getProduct } from "../../data/products.js";
+import {formatCurency} from "../../scripts/utils/money.js";
 
 describe('Test suite; renderOrderSummary.js', () => {
   const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
@@ -56,6 +57,9 @@ describe('Test suite; renderOrderSummary.js', () => {
   ).toContain('Quantity: 1');
 
   
+  
+
+  
   });
 
 
@@ -80,7 +84,21 @@ describe('Test suite; renderOrderSummary.js', () => {
 
   expect(cart.length).toEqual(1);
   expect(cart[0].productId).toEqual(productId2);
-
-  
   });
+
+  it('Shows name of the product correctly', () => {
+    expect(
+      document.querySelector(`.js-product-name-${productId1}`).innerText
+    ).toContain(getProduct(productId1).name);
+  });
+
+  it ('Shows price of the products correctly', () => {
+    expect(
+        document.querySelector(`.js-product-price-${productId1}`).innerText
+    ).toContain(`$${formatCurency(getProduct(productId1).priceCents)}`);
+    
+  });
+
+
+
 });

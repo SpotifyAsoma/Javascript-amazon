@@ -16,4 +16,8 @@ describe('test Suite: formatCurrency', () => {
   it('2000.4 = 20.00', () => {
     expect(formatCurency(2000.4)).toEqual('20.00');
   });
+
+  it('-2095 = -20.95', () => {
+    expect(formatCurency(-2095)).toEqual('-20.95');
+  });
 });
