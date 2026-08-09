@@ -2,6 +2,8 @@ import { renderOrderSummary } from "../../scripts/Checkout/orderSummary.js";
 import { loadFromStorage,cart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import {formatCurency} from "../../scripts/utils/money.js";
+import { renderPaymentSummary } from "../../scripts/Checkout/paymentSummary.js";
+
 
 describe('Test suite; renderOrderSummary.js', () => {
   const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
@@ -12,7 +14,7 @@ describe('Test suite; renderOrderSummary.js', () => {
   })
 
   beforeEach(() => {
-    spyOn(localStorage, 'setItem');
+    
 
     
 
@@ -100,5 +102,52 @@ describe('Test suite; renderOrderSummary.js', () => {
   });
 
 
+
+  it('Checks the delivery options', () => {
+    
+    document.querySelector(`.js-delivery-option-${productId1}-1`).click();
+    expect(cart[0].deliveryOptionId).toBe('1');
+    expect(
+      document.querySelector(`.js-delivery-input-${productId1}-1`).checked
+    ).toBe(true);
+      
+
+    document.querySelector(`.js-delivery-option-${productId1}-3`).click();
+    expect(cart[0].deliveryOptionId).toBe('3');
+    expect(
+      document.querySelector(`.js-delivery-input-${productId1}-3`).checked
+    ).toBe(true);
+  });
+
+
+  it('Checks the delivery option selected price is correct in paymentSummary', () => {
+    renderPaymentSummary();
+    
+    document.querySelector(`.js-delivery-option-${productId1}-1`).click(); 
+    document.querySelector(`.js-delivery-option-${productId2}-1`).click();
+    expect(
+      document.querySelector(`.js-shipping`).innerText
+    ).toBe('$0.00');
+
+    document.querySelector(`.js-delivery-option-${productId1}-2`).click(); 
+    document.querySelector(`.js-delivery-option-${productId2}-1`).click();
+    expect(
+      document.querySelector(`.js-shipping`).innerText
+    ).toBe('$4.99');
+
+    document.querySelector(`.js-delivery-option-${productId1}-2`).click(); 
+    document.querySelector(`.js-delivery-option-${productId2}-2`).click();
+    expect(
+      document.querySelector(`.js-shipping`).innerText
+    ).toBe('$9.98');
+
+    document.querySelector(`.js-delivery-option-${productId1}-3`).click(); 
+    document.querySelector(`.js-delivery-option-${productId2}-3`).click();
+    expect(
+      document.querySelector(`.js-shipping`).innerText
+    ).toBe('$19.98');
+
+
+  });
 
 });

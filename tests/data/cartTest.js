@@ -1,4 +1,4 @@
-import { removeFromCart, loadFromStorage, } from "../../data/cart.js";
+import { removeFromCart, loadFromStorage,updateDeliveryOption, } from "../../data/cart.js";
 
 
 
@@ -30,23 +30,6 @@ describe('test suite: addToCart', () => {
     
 
 
-  it('adds an existing product to the cart', () => {
-
-    loadFromStorage();
-
-  });
-
-
-  
-  it('adds a new product to the cart', () => {
-  localStorage.getItem.and.returnValue(
-    JSON.stringify([])
-  );
-
-  loadFromStorage();
-
-  
-});
 
 
   it('Removing from cart', () => {
@@ -76,6 +59,14 @@ describe('test suite: addToCart', () => {
           deliveryOptionId: '2',
     }]))
   })
+
+
+  it('Change delivery option of a product thats not in the cart', () => {
+  expect(updateDeliveryOption(5555, '1')).toBe(undefined);
+
+  expect(localStorage.setItem).not.toHaveBeenCalled();
+});
+    
 
 
 });
