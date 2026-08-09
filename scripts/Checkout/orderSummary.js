@@ -130,8 +130,7 @@ export function renderOrderSummary() {
     return html;
   };
 
-  console.log(document.querySelector('.js-order-summary'));
-  console.log(document.body.innerHTML);
+
 
 
   document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
