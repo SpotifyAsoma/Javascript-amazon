@@ -1,4 +1,4 @@
-
+import {formatCurency} from "../scripts/utils/money.js";
 
 export function getProduct(productId) {
   let matchingProducts;
@@ -10,6 +10,34 @@ export function getProduct(productId) {
   
   return matchingProducts;
 };
+
+class Product {
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+
+  constructor(productDetails) {
+    this.id = productDetails.id ;
+    this.image = productDetails.image;
+    this.name = productDetails.name;
+    this.rating = productDetails.rating;
+    this.priceCents = productDetails.priceCents;
+  }
+
+  getStarsUrl() {
+    return `images/ratings/rating-${this.rating.stars}.png`;
+  }
+
+  getPrice() {
+    return `$${formatCurency(this.priceCents)}`;
+  }
+
+}
+
+
+
 
 export const products = [
   {
@@ -670,4 +698,7 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((productDeatails) => {
+  return new Product(productDeatails);
+});
+
