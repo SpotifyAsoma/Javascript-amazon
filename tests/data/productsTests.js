@@ -1,6 +1,14 @@
-import { products,getProduct } from "../../data/products.js";
+import { products,getProduct, loadProducts } from "../../data/products.js";
 
 describe ('Test products.js and check the values', () => {
+  
+  beforeAll((done) => {
+    loadProducts(() => {
+      done();
+    });
+  });
+    
+
 
   it('Check if products have name, image, price and keywords',() => {
     products.forEach((product) => {
