@@ -1,8 +1,8 @@
-import {cart, updateCartQuantity,loadFromStorage} from '../../data/cart.js';
-import {getProduct, loadProductsFetch} from '../../data/products.js';
+import {cart, updateCartQuantity,loadFromStorage} from '../data/cart.js';
+import {getProduct, loadProductsFetch} from '../data/products.js';
 import { multiProductDeliverySum} from '../scripts/utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
-import { getDeliveryoption} from '../../data/deliveryOptions.js';
+import { getDeliveryoption} from '../data/deliveryOptions.js';
 
 
 // .. means go back (folder)
