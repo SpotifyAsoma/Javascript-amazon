@@ -6,3 +6,7 @@ export function formatCurency(priceCents) {
 }
 
 export default formatCurency;
+
+export function multiProductDeliverySum(priceCents,cartItemquantity,deliveryOption) {
+  return (Math.round(priceCents * cartItemquantity + deliveryOption)/100).toFixed(2);
+} 
