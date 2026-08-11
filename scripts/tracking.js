@@ -1,5 +1,5 @@
-import {cart, updateCartQuantity,loadFromStorage} from '../../data/cart.js';
-import { getDeliveryoption} from '../../data/deliveryOptions.js';
+import {cart, updateCartQuantity,loadFromStorage} from '../data/cart.js';
+import { getDeliveryoption} from '../data/deliveryOptions.js';
 import { getProduct, loadProductsFetch } from '../data/products.js';
 
 
