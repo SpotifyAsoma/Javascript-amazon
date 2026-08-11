@@ -93,7 +93,7 @@ javascript-amazon-project/
 │   ├── orders.js          # Order helpers
 │   ├── cart-oop.js        # 🧪 Practice: Cart via constructor function
 │   ├── cart-class.js      # 🧪 Practice: Cart via class + private field
-│   ├── backend-practice.js # 🧪 Practice: raw XHR
+│   ├── backend-practice.js # 🧪 Practice: raw XHR (unused, learning artifact)
 │
 ├── scripts/
 │   ├── amazon.js          # Shop page controller

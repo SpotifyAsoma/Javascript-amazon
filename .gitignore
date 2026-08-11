@@ -3,11 +3,6 @@ node_modules/
 dist/
 build/
 
-# Editor
-.vscode/
-.idea/
-*.swp
-
 # OS junk
 .DS_Store
 Thumbs.db
