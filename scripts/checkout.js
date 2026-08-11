@@ -6,18 +6,28 @@ import { loadProducts, loadProductsFetch } from '../data/products.js';
 //import '../data/backend-practice.js' 
 
 
+async function loadPage() {
+  await loadProductsFetch();
+  await new Promise(() => {
+    loadProductsFetch(),
+    renderOrderSummary();
+    renderPaymentSummary();
+    renderHeaderHTML();
+  })
+}
+loadPage();
 
 
 
+/* 
 Promise.all([
   loadProductsFetch(),
   
 ]).then(() =>{
-  console.log('2')
   renderOrderSummary();
   renderPaymentSummary();
   renderHeaderHTML();
-})
+}) */
 
 
 
