@@ -12,6 +12,10 @@
 
 ## 🚀 Live Demo
 
+**🌐 GitHub Pages:** <https://spotifyasoma.github.io/Javascript-amazon/>
+
+> ⚠️ The Pages build is current only after the last commit — the site auto-deploys from `main` on every push.
+
 Opening the site requires a local server because the product data is fetched over the network — open it directly (`file://`) and the fetch will fail.
 
 **Quick start (VS Code):**
