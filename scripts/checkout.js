@@ -7,14 +7,24 @@ import { loadProducts, loadProductsFetch } from '../data/products.js';
 
 
 async function loadPage() {
-  await loadProductsFetch();
-  await new Promise(() => {
+  try {
+    /* throw 'error1'; */
+
+    await loadProductsFetch();
+    await new Promise(() => {
     loadProductsFetch(),
     renderOrderSummary();
     renderPaymentSummary();
     renderHeaderHTML();
-  })
-}
+  });
+
+
+  } catch(error) {
+    console.log(error , 'try again later')
+  }
+
+
+} 
 loadPage();
 
 
