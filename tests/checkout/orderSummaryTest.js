@@ -3,7 +3,7 @@ import { loadFromStorage,cart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import {formatCurency} from "../../scripts/utils/money.js";
 import { renderPaymentSummary } from "../../scripts/Checkout/paymentSummary.js";
-import { loadProducts } from "../../data/products.js";
+import { loadProducts, loadProductsFetch } from "../../data/products.js";
 
 
 describe('Test suite; renderOrderSummary.js', () => {
@@ -11,12 +11,12 @@ describe('Test suite; renderOrderSummary.js', () => {
   const productId2 = '15b6fc6f-327a-4ec4-896f-486349e85a3d';
  
   beforeAll((done) => {
-    loadProducts(() => {
+    loadProductsFetch().then( () => {
       done();
     });
-    
   });
 
+  
   afterEach(() =>{
     document.querySelector('.js-test-container').innerHTML = '';
   })
