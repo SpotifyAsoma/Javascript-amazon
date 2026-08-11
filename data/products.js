@@ -1,5 +1,11 @@
 import {formatCurency} from "../scripts/utils/money.js";
 
+
+
+
+
+
+
 export function getProduct(productId) {
   let matchingProducts;
   products.forEach ((product) =>{
