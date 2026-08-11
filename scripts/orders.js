@@ -1,9 +1,9 @@
-import {cart, removeFromCart, updateCartQuantity, updateDeliveryOption} from '../../data/cart.js';
-import {products, getProduct, loadProductsFetch} from '../../data/products.js';
-import {formatCurency ,  multiProductDeliverySum} from '../scripts/utils/money.js';
+import {cart, updateCartQuantity,loadFromStorage} from '../../data/cart.js';
+import {getProduct, loadProductsFetch} from '../../data/products.js';
+import { multiProductDeliverySum} from '../scripts/utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
-import {deliveryOptions , getDeliveryoption} from '../../data/deliveryOptions.js';
-import { loadFromStorage } from '../data/cart.js';
+import { getDeliveryoption} from '../../data/deliveryOptions.js';
+
 
 // .. means go back (folder)
 
@@ -12,7 +12,7 @@ Promise.all([
   loadProductsFetch(),
   loadFromStorage()
 ]).then(() => {
-  console.log('trying to load')
+
   renderOrdersHTML();
 });
 
@@ -24,17 +24,40 @@ export function renderOrdersHTML() {
       const productId = cartItem.productId;
   
       const matchingProducts = getProduct(productId);
+
   
       const deliveryOptionId = cartItem.deliveryOptionId;
   
       const deliveryOption = getDeliveryoption(deliveryOptionId);
-  
+    
       const today = dayjs();
 
       const todayFormated = today.format('MMMM D')
 
-      console.log(today)
       
+      const deliveryDate = today.add(
+      deliveryOption.deliveryDays ,
+      'days'
+      );
+      const dateString = deliveryDate.format(
+      'dddd, MMMM D'
+      );
+
+      
+
+
+
+      const orderId = crypto.randomUUID();
+
+      const order = {
+        orderId: orderId,
+        productId: matchingProducts.id,
+        quantity: cartItem.quantity,
+        orderDate: dateString
+      };
+
+      localStorage.setItem(`order-${orderId}`,JSON.stringify(order));
+          
   
 
       html += `
@@ -79,7 +102,7 @@ export function renderOrdersHTML() {
               </div>
 
               <div class="product-actions">
-                <a href="tracking.html?${matchingProducts.id}&${cartItem.quantity}">
+                <a href="tracking.html?orderId=${orderId}">
                   <button class="track-package-button button-secondary">
                     Track package
                   </button>
