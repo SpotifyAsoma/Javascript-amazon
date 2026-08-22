@@ -12,7 +12,7 @@
 
 ## 🚀 Live Demo
 
-**🌐 GitHub Pages:** <https://spotifyasoma.github.io/Javascript-amazon/>
+**🌐 GitHub Pages:** <https://aidenpiearce.github.io/Javascript-amazon/amazon.html/>
 
 > ⚠️ The Pages build is current only after the last commit — the site auto-deploys from `main` on every push.
 
